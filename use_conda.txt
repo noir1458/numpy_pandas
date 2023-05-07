@@ -1,0 +1,9 @@
+4장
+
+conda activate py4fi
+conda deactivate
+conda list
+conda env list
+
+pip list
+pip install numpy
