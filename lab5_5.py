@@ -94,7 +94,7 @@ def testpd3():
     
     # merge
     df_merge = pd.merge(df_st1, df_dep,left_on='DepId', right_on='DId',how='inner')
-    df_school = pd.merge(df_st1,df_dep, left_on="depid", right_on="did")
+    #df_school = pd.merge(df_st1,df_dep, left_on="depid", right_on="did")
     print(df_merge)
 
     return None
