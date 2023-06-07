@@ -187,12 +187,92 @@ def testplot5():
     plt.show()
     return None
 
+def testplot6():
+    ind_path = './indicators.csv'
+    dt_ind = {
+        'CountryName':np.unicode_,
+        'CountryCode':np.unicode_,
+        'IndicatorName':np.unicode_,
+        'IndicatorCode':np.unicode_,
+        'Year':np.int16,
+        'Value':np.float64
+    }
+    df_ind = pd.read_csv(ind_path,dtype=dt_ind,sep=',')
+
+    # cond1 & cond2 ==> CO2 emission & korea
+    ind_co2 = 'CO2 emissions \(metric'
+    ctr_code = 'KOR'
+    ctr_code2 = 'USA'
+    input_ctr_code = ctr_code
+
+    cond1 = df_ind['IndicatorName'].str.contains(ind_co2)
+    cond2 = df_ind['CountryCode'].str.contains(input_ctr_code)
+    co2_res = df_ind[cond1 & cond2]
+    
+    ind_gdp = 'GDP per capita \(constant 2005'
+    cond3 = df_ind['IndicatorName'].str.contains(ind_gdp)
+    cond2 = df_ind['CountryCode'].str.contains(input_ctr_code)
+    gdp_res = df_ind[cond3 & cond2]
+    gdp_res_to_2011 = gdp_res[gdp_res["Year"] < 2012]
+    #print(co2_res)
+    #print(gdp_res_to_2011)
+
+    fig, axis = plt.subplots() # 그래프를 여러개 넣을수 있음
+    axis.set_title('CO2 emissions cs. GDP\(percapia)')
+    axis.set_xlabel(gdp_res_to_2011['IndicatorName'].iloc[0])
+    axis.set_ylabel(co2_res['IndicatorName'].iloc[0])
+    x_data = gdp_res_to_2011['Value'].values
+    y_data = co2_res['Value'].values
+    axis.scatter(x_data,y_data)
+    plt.show()
+
+    # correlation
+    R = np.corrcoef(x_data,y_data)
+    print(R)
+    return None
+
+def testplot7():
+    ind_path = './indicators.csv'
+    dt_ind = {
+        'CountryName':np.unicode_,
+        'CountryCode':np.unicode_,
+        'IndicatorName':np.unicode_,
+        'IndicatorCode':np.unicode_,
+        'Year':np.int16,
+        'Value':np.float64
+    }
+    df_ind = pd.read_csv(ind_path,dtype=dt_ind,sep=',')
+
+    countries = ['KOR','USA']
+    ind_co2 = 'CO2 emissions \(metric'
+    cond_co2 = df_ind['IndicatorName'].str.contains(ind_co2)
+    df_co2 = df_ind[cond_co2]
+    
+    cond_ctr = df_co2['CountryCode'].str.contains(countries[0])
+    co2_kor = df_co2[cond_ctr]['Value'].values
+    cond_ctr = df_co2['CountryCode'].str.contains(countries[1])
+    co2_usa = df_co2[cond_ctr]['Value'].values
+
+    co2_emissions = pd.DataFrame({'KOR':co2_kor,'USA':co2_usa})
+
+    fig, axis = plt.subplots(figsize = (10,8))
+    plt.boxplot(co2_emissions,notch=True,patch_artist=True)
+    
+    plt.xlabel('Countries')
+    plt.ylabel(df_co2['IndicatorName'].iloc[0])
+    plt.title('CO2 emissions comparison')
+    plt.show()
+
+    return None
+
 def main():
     #testplot1()
     #testplot2()
     #testplot3()
     #testplot4()
-    testplot5()
+    #testplot5()
+    #testplot6()
+    testplot7()
     return None
 
 if __name__ =='__main__':
