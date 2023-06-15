@@ -53,15 +53,18 @@ def testNumpyArray4():
     c = np.array([100,2,3,4,-10])
     d = c[1:3]
     print(d)
-    #d[1:3] = 30,40
+    #d[1:3] = 30,40  # ValueError: could not broadcast input array from shape (2,) into shape (1,)
     print(d)
     return None
 
 def main():
     testNumpyArray()
-    #testNumpyArray2()
-    #testNumpyArray3()
-    #testNumpyArray4()
+    print('--------------------------')
+    testNumpyArray2()
+    print('--------------------------')
+    testNumpyArray3()
+    print('--------------------------')
+    testNumpyArray4()
     return None
 
 if __name__ == '__main__':

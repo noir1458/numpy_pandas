@@ -61,7 +61,8 @@ def testPd2():
     return None
 
 def main():
-    #testPd1()
+    testPd1()
+    print('---------------')
     testPd2()
     return None
 

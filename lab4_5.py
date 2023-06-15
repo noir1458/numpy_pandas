@@ -49,8 +49,10 @@ def testNp3():
     return None
 
 def main():
-    #testNp1()
-    # testNp2()
+    testNp1()
+    print('--------------')
+    testNp2()
+    print('--------------')
     testNp3()
     return None
 

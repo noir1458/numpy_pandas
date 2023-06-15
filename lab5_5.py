@@ -100,8 +100,10 @@ def testpd3():
     return None
 
 def main():
-    #testpd1()
-    #testpd2()
+    testpd1()
+    print('-----------')
+    testpd2()
+    print('-----------')
     testpd3()
     return None
 

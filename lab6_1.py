@@ -271,8 +271,8 @@ def main():
     #testplot3()
     #testplot4()
     #testplot5()
-    #testplot6()
-    testplot7()
+    testplot6()
+    #testplot7()
     return None
 
 if __name__ =='__main__':

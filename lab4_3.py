@@ -50,8 +50,10 @@ def testOp3():
     return None
 
 def main():
-    #testBasicOp()
-    #testOp2()
+    testBasicOp()
+    print('-----------------')
+    testOp2()
+    print('-----------------')
     testOp3()
     return None
 
